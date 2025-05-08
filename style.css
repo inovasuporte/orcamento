@@ -1,0 +1,281 @@
+/* Fundo da página com imagem estática */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('../img/fundo.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Folha central simulando uma A4 transparente */
+.folha {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+	/* Cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 180px;
+  height: auto;
+}
+
+.dados-contato p {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+/* Sessões */
+section {
+  margin-bottom: 25px;
+}
+
+/* Layout em colunas */
+.dados-principais,
+.cliente {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.coluna {
+  flex: 1 1 200px;
+}
+
+.coluna label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.coluna input,
+.linha input,
+select {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Tabela de itens */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+table thead {
+  background-color: #e0e0e0;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+
+table input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Botões */
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #00518c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #003f6f;
+}
+
+button.gerar {
+  display: block;
+  margin: 30px auto 10px auto;
+  font-size: 16px;
+  padding: 10px 25px;
+}
+
+/* Rodapé */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+footer .icones a {
+  margin-left: 10px;
+}
+
+.icon-small {
+  width: 24px;
+  height: 24px;
+}
+body.bg {
+  background: url('../img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.folha {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+@media print {
+  body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+  }
+
+  /* Ocultar elementos desnecessários durante a impressão */
+  .gerar,
+  .icones,
+  footer {
+    display: none;
+  }
+
+  .folha {
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  input, select {
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+
+  .linha, .coluna {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .folha {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .dados-contato {
+    margin-top: 10px;
+  }
+
+  .coluna {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  section.dados-principais,
+  section.cliente {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table tbody tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  table td {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+
+  .linha {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linha label {
+    margin-bottom: 5px;
+  }
+
+  .gerar {
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .icones a {
+    margin: 5px;
+  }
+}
