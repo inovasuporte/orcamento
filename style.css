@@ -1,25 +1,23 @@
 /* Fundo da página com imagem estática */
+/* Fundo da página com imagem */
 body {
   background: url('img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
+  padding: 0;
 }
 
-/* Folha central simulando uma A4 transparente */
+/* Folha com largura fluida e altura natural */
 .folha {
-  width: 90%;
-  max-width: 900px; /* Reduzindo o tamanho máximo para dispositivos móveis */
-  margin: 40px auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  overflow: auto; /* Adiciona rolagem se o conteúdo ultrapassar a altura */
+  box-sizing: border-box;
 }
 
 /* Cabeçalho */
@@ -215,17 +213,14 @@ body.bg {
 
 /* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
-  body {
-    font-size: 16px;
-    padding: 10px;
-  }
-
   .folha {
-    width: 100%;
-    margin: 0 auto;
+    margin: 10px;
     padding: 10px;
-    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0;
   }
+}
+
 
   header {
     flex-direction: column;
