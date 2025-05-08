@@ -103,4 +103,6 @@ function gerarOrcamento() {
 
   // Abre a janela de impressão (permitindo salvar como PDF ou imprimir direto)
   window.print();
+  // Depois de gerar o orçamento, redirecionar para a página de confirmação
+  window.location.href = "confirmacao.html";
 }
