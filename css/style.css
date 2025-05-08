@@ -1,23 +1,24 @@
 /* Fundo da página com imagem estática */
-/* Fundo da página com imagem */
 body {
   background: url('img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  padding: 0;
 }
 
-/* Folha com largura fluida e altura natural */
+/* Folha central simulando uma A4 transparente */
 .folha {
-  width: 100%;
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  box-sizing: border-box;
 }
 
 /* Cabeçalho */
@@ -42,7 +43,7 @@ header {
 
 .dados-contato p {
   margin: 0.5rem 0;
-  font-size: 1rem; /* Ajustando o tamanho da fonte */
+  font-size: 1.1rem;
 }
 
 /* Sessões */
@@ -59,7 +60,7 @@ section {
 }
 
 .coluna {
-  flex: 1 1 180px; /* Ajustando as colunas para caber melhor em dispositivos móveis */
+  flex: 1 1 200px;
 }
 
 .coluna label {
@@ -213,14 +214,17 @@ body.bg {
 
 /* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
-  .folha {
-    margin: 10px;
+  body {
+    font-size: 16px;
     padding: 10px;
-    box-shadow: none;
-    border-radius: 0;
   }
-}
 
+  .folha {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
   header {
     flex-direction: column;
@@ -293,7 +297,7 @@ body.bg {
 
 @media (max-width: 480px) {
   .dados-contato p {
-    font-size: 0.9rem; /* Ajustando para uma fonte menor */
+    font-size: 1rem;
   }
 
   footer .icones a {
@@ -303,15 +307,5 @@ body.bg {
   .icon-small {
     width: 20px;
     height: 20px;
-  }
-
-  /* Reduzindo margens e ajustes no botão */
-  .gerar {
-    padding: 8px 20px;
-    font-size: 14px;
-  }
-
-  .folha {
-    padding: 15px;
   }
 }
