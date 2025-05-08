@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orçamento Enviado</title>
+  <style>
+    body {
+      background: url('img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .confirmacao {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .confirmacao h1 {
+      color: #1e90ff;
+      margin-bottom: 1rem;
+    }
+
+    .confirmacao p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .confirmacao a {
+      text-decoration: none;
+      background-color: #1e90ff;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .confirmacao a:hover {
+      background-color: #156ec3;
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmacao">
+    <h1>Orçamento gerado com sucesso!</h1>
+    <p>Obrigado por utilizar o sistema da Inova Suporte.<br/>
+    Seu orçamento foi processado e está pronto para impressão ou envio.</p>
+    <a href="index.html">Criar novo orçamento</a>
+  </div>
+</body>
+</html>
