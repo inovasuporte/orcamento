@@ -1,24 +1,20 @@
-/* Fundo da página com imagem estática */
-/* Fundo da página com imagem */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+/* Fundo com imagem */
+body.bg {
   background: url('img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  min-height: 100vh;
-  display: block;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Folha com largura fluida e altura natural */
+/* Folha central */
 .folha {
-  max-width: 960px;
-  width: 95%;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.95);
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   box-sizing: border-box;
 }
 
@@ -27,7 +23,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .logo {
@@ -38,13 +35,8 @@ header {
 .dados-contato {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.dados-contato p {
-  margin: 0.5rem 0;
-  font-size: 1rem; /* Ajustando o tamanho da fonte */
+  align-items: flex-start;
+  font-size: 1rem;
 }
 
 /* Sessões */
@@ -52,7 +44,6 @@ section {
   margin-bottom: 25px;
 }
 
-/* Layout em colunas */
 .dados-principais,
 .cliente {
   display: flex;
@@ -61,13 +52,13 @@ section {
 }
 
 .coluna {
-  flex: 1 1 180px; /* Ajustando as colunas para caber melhor em dispositivos móveis */
+  flex: 1 1 200px;
 }
 
 .coluna label {
-  display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  display: block;
 }
 
 .coluna input,
@@ -79,7 +70,7 @@ select {
   box-sizing: border-box;
 }
 
-/* Tabela de itens */
+/* Tabela */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -135,6 +126,7 @@ footer {
   border-top: 1px solid #ccc;
   padding-top: 10px;
   font-size: 14px;
+  flex-wrap: wrap;
 }
 
 footer .icones a {
@@ -146,26 +138,8 @@ footer .icones a {
   height: 24px;
 }
 
-/* Ajustes para impressão */
-body.bg {
-  background: url('../img/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-.folha {
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
+/* Impressão */
 @media print {
-  body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: black;
-  }
-
-  /* Ocultar elementos desnecessários durante a impressão */
   .gerar,
   .icones,
   footer {
@@ -187,42 +161,29 @@ body.bg {
     font-size: 24px;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-
-  th, td {
+  table th, table td {
     border: 1px solid #000;
     padding: 8px;
     text-align: left;
-  }
-
-  th {
-    background-color: #f2f2f2;
   }
 
   input, select {
     border: 1px solid #ccc;
     padding: 5px;
   }
-
-  .linha, .coluna {
-    margin-bottom: 10px;
-  }
 }
 
-/* Ajustes para dispositivos móveis */
+/* Responsivo */
 @media (max-width: 768px) {
-  .folha {
-    margin: 10px;
+  body {
+    font-size: 16px;
     padding: 10px;
-    box-shadow: none;
-    border-radius: 0;
   }
-}
 
+  .folha {
+    width: 100%;
+    padding: 15px;
+  }
 
   header {
     flex-direction: column;
@@ -241,7 +202,6 @@ body.bg {
 
   section.dados-principais,
   section.cliente {
-    display: flex;
     flex-direction: column;
     gap: 10px;
   }
@@ -263,7 +223,6 @@ body.bg {
   }
 
   table td {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
@@ -290,30 +249,5 @@ body.bg {
 
   .icones a {
     margin: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dados-contato p {
-    font-size: 0.9rem; /* Ajustando para uma fonte menor */
-  }
-
-  footer .icones a {
-    margin: 5px;
-  }
-
-  .icon-small {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Reduzindo margens e ajustes no botão */
-  .gerar {
-    padding: 8px 20px;
-    font-size: 14px;
-  }
-
-  .folha {
-    padding: 15px;
   }
 }
