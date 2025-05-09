@@ -1,13 +1,10 @@
 /* Fundo da página com imagem estática */
 body {
-  background: url('img/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('../img/fundo.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* Folha central simulando uma A4 transparente */
@@ -21,7 +18,7 @@ body {
   border-radius: 10px;
 }
 
-/* Cabeçalho */
+	/* Cabeçalho */
 header {
   display: flex;
   justify-content: space-between;
@@ -144,8 +141,6 @@ footer .icones a {
   width: 24px;
   height: 24px;
 }
-
-/* Ajustes para impressão */
 body.bg {
   background: url('../img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -156,7 +151,6 @@ body.bg {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-
 @media print {
   body {
     font-family: Arial, sans-serif;
@@ -211,8 +205,6 @@ body.bg {
     margin-bottom: 10px;
   }
 }
-
-/* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -292,20 +284,5 @@ body.bg {
 
   .icones a {
     margin: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dados-contato p {
-    font-size: 1rem;
-  }
-
-  footer .icones a {
-    margin: 5px;
-  }
-
-  .icon-small {
-    width: 20px;
-    height: 20px;
   }
 }
