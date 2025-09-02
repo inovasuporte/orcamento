@@ -8,44 +8,62 @@ window.onload = () => {
   const validadeFormatada = validade.toISOString().split("T")[0];
   document.getElementById("validade").value = validadeFormatada;
 
-  // Geração automática do número do orçamento no formato ORC-YYYYMMDD01
   const numeroOrcamento = `ORC-${hoje.getFullYear()}${('0' + (hoje.getMonth() + 1)).slice(-2)}${('0' + hoje.getDate()).slice(-2)}01`;
   document.getElementById("numeroOrcamento").value = numeroOrcamento;
 };
 
+// Formata como moeda com R$
 function formatarMoeda(input) {
   let valor = input.value.replace(/\D/g, "");
   valor = (parseFloat(valor) / 100).toFixed(2);
-  input.value = valor.replace(".", ",");
+  input.value = `R$ ${valor.replace(".", ",")}`;
 }
 
+// Formata o telefone
+function formatarTelefone(input) {
+  let valor = input.value.replace(/\D/g, "");
+  if (valor.length > 11) valor = valor.slice(0, 11);
+
+  if (valor.length <= 10) {
+    valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+  } else {
+    valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+  }
+
+  input.value = valor;
+}
+
+// Cálculo por linha
 function calcularLinha(elemento) {
   const linha = elemento.closest("tr");
   const qtd = parseFloat(linha.querySelector(".qtd").value || 0);
-  const unitario = parseFloat(linha.querySelector(".unitario").value.replace(",", ".") || 0);
+  const unitarioStr = linha.querySelector(".unitario").value.replace("R$", "").trim();
+  const unitario = parseFloat(unitarioStr.replace(",", ".") || 0);
   const total = qtd * unitario;
 
-  linha.querySelector(".total").value = total.toFixed(2).replace(".", ",");
+  linha.querySelector(".total").value = `R$ ${total.toFixed(2).replace(".", ",")}`;
   calcularTotais();
 }
 
+// Totais e desconto
 function calcularTotais() {
   const totais = document.querySelectorAll(".total");
   let soma = 0;
 
   totais.forEach(input => {
-    const valor = parseFloat(input.value.replace(",", ".") || 0);
+    const valor = parseFloat(input.value.replace("R$", "").replace(",", ".") || 0);
     soma += valor;
   });
 
-  document.getElementById("valorTotal").value = soma.toFixed(2).replace(".", ",");
+  document.getElementById("valorTotal").value = `R$ ${soma.toFixed(2).replace(".", ",")}`;
 
   const desconto = soma * 0.97;
-  document.getElementById("valorVista").value = desconto.toFixed(2).replace(".", ",");
+  document.getElementById("valorVista").value = `R$ ${desconto.toFixed(2).replace(".", ",")}`;
 
   calcularParcelado();
 }
 
+// Adiciona item
 function adicionarItem() {
   const tabela = document.getElementById("corpoTabelaItens");
   const novaLinha = document.createElement("tr");
@@ -60,8 +78,10 @@ function adicionarItem() {
   tabela.appendChild(novaLinha);
 }
 
+// Parcelamento com juros
 function calcularParcelado() {
-  const total = parseFloat((document.getElementById("valorTotal").value || "0").replace(",", "."));
+  const totalStr = document.getElementById("valorTotal").value.replace("R$", "").trim();
+  const total = parseFloat(totalStr.replace(",", ".") || 0);
   const parcelas = parseInt(document.getElementById("parcelas").value);
   if (!parcelas || parcelas < 2) {
     document.getElementById("valorParcelado").value = "";
@@ -78,31 +98,53 @@ function calcularParcelado() {
   const totalComJuros = total * (1 + juros);
   const valorParcela = totalComJuros / parcelas;
 
-  document.getElementById("valorParcelado").value = `${parcelas}x de R$ ${valorParcela.toFixed(2).replace(".", ",")} (Total: R$ ${totalComJuros.toFixed(2).replace(".", ",")})`;
+  document.getElementById("valorParcelado").value =
+    `${parcelas}x de R$ ${valorParcela.toFixed(2).replace(".", ",")} (Total: R$ ${totalComJuros.toFixed(2).replace(".", ",")})`;
 }
 
+// Gera visualização e impressão
 function gerarOrcamento() {
-  // Aqui você ainda coleta os dados caso queira usar futuramente
-  const numeroOrcamento = document.getElementById("numeroOrcamento").value;
-  const dataAtual = document.getElementById("dataAtual").value;
-  const validade = document.getElementById("validade").value;
-  const elaboradoPor = document.getElementById("elaboradoPor").value;
-  const empresa = document.getElementById("empresa").value;
   const nome = document.getElementById("nome").value;
   const telefone = document.getElementById("telefone").value;
-  const email = document.getElementById("email").value;
-  const valorTotal = document.getElementById("valorTotal").value;
-  const valorVista = document.getElementById("valorVista").value;
-  const valorParcelado = document.getElementById("valorParcelado").value;
+  const numeroOrcamento = document.getElementById("numeroOrcamento").value;
 
-  // Se desejar, você pode validar campos obrigatórios aqui
   if (!nome || !telefone || !numeroOrcamento || document.querySelectorAll("#corpoTabelaItens tr").length === 0) {
     alert("Preencha os dados do cliente e adicione ao menos um item.");
     return;
   }
 
-  // Abre a janela de impressão (permitindo salvar como PDF ou imprimir direto)
+  const tabelaItens = document.querySelectorAll("#corpoTabelaItens tr");
+  let htmlItens = "<h3>Itens do Orçamento</h3>";
+
+  tabelaItens.forEach(tr => {
+    const qtd = tr.querySelector(".qtd")?.value || "0";
+    const descricao = tr.querySelector(".descricao")?.value || "";
+    const unitario = tr.querySelector(".unitario")?.value || "R$ 0,00";
+    const total = tr.querySelector(".total")?.value || "R$ 0,00";
+
+    htmlItens += `
+      <p><strong>Quantidade:</strong> ${qtd} | 
+         <strong>Produto:</strong> ${descricao} | 
+         <strong>Unitário:</strong> ${unitario} | 
+         <strong>Total:</strong> ${total}</p>
+    `;
+  });
+
+  const totalFinal = document.getElementById("valorTotal").value;
+  const vistaFinal = document.getElementById("valorVista").value;
+  const parceladoFinal = document.getElementById("valorParcelado").value;
+
+  htmlItens += `
+    <p><strong>Total:</strong> ${totalFinal}</p>
+    <p><strong>À vista (PIX):</strong> ${vistaFinal}</p>
+    ${parceladoFinal ? `<p><strong>Parcelado:</strong> ${parceladoFinal}</p>` : ""}
+  `;
+
+  document.getElementById("itens-formatados-impressao").innerHTML = htmlItens;
+
   window.print();
-  // Depois de gerar o orçamento, redirecionar para a página de confirmação
-  window.location.href = "./confirmacao.html";
+
+  setTimeout(() => {
+    window.location.href = "./confirmacao.html";
+  }, 1000);
 }
