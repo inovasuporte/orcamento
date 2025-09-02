@@ -1,3 +1,4 @@
+
 /* Fundo da página com imagem estática */
 body {
   margin: 0;
@@ -16,9 +17,10 @@ body {
   background-color: rgba(255, 255, 255, 0.92);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  background-color: white;
 }
 
-	/* Cabeçalho */
+/* Cabeçalho */
 header {
   display: flex;
   justify-content: space-between;
@@ -141,70 +143,149 @@ footer .icones a {
   width: 24px;
   height: 24px;
 }
+
 body.bg {
   background: url('../img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
-.folha {
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.nao-imprimir {
+  display: block;
 }
+
 @media print {
-  body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: black;
+  /* Esconde itens que não devem aparecer */
+  .nao-imprimir,
+  .logout-btn,
+  button,
+  select,
+  .icones,
+  footer,
+  table {
+    display: none !important;
   }
 
-  /* Ocultar elementos desnecessários durante a impressão */
-  .gerar,
-  .icones,
-  footer {
-    display: none;
+  /* Ajuste da página */
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  body, html {
+    font-family: Arial, sans-serif !important;
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
   }
 
   .folha {
     width: 100%;
-    padding: 20px;
     margin: 0;
+    padding: 20mm;
+    background: white !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
   }
 
   header {
-    text-align: center;
-    margin-bottom: 20px;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+
+  .logo {
+    max-width: 150px !important;
+    margin-bottom: 8px;
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 18pt !important;
+    margin: 5px 0;
   }
 
-  table {
+  .dados-contato {
+    font-size: 10pt !important;
+    margin-top: 5px;
+  }
+
+  .dados-contato p {
+    margin: 2px 0;
+  }
+
+
+  .dados-principais,
+  .cliente {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 20px;
+  }
+
+  .coluna {
+    flex: 1 1 45%;
+    max-width: 45%;
+    box-sizing: border-box;
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 10pt;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  input, textarea {
+    font-size: 10pt;
+    border: none !important;
+    background: none !important;
+    color: black !important;
+    padding: 0;
+    margin: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
   }
 
-  th, td {
-    border: 1px solid #000;
-    padding: 8px;
+  input::placeholder {
+    color: black !important;
+  }
+
+  /* Itens formatados para impressão */
+  #itens-formatados-impressao {
+    display: block !important;
+    font-size: 10pt;
+    margin-top: 25px;  /* Aumenta espaço após os dados do cliente */
+    margin-bottom: 30px; /* Espaço antes dos valores finais */
+  }
+
+  #itens-formatados-impressao h3 {
+    margin-bottom: 10px;
+    font-size: 12pt;
+    text-transform: uppercase;
     text-align: left;
   }
 
-  th {
-    background-color: #f2f2f2;
+  #itens-formatados-impressao p {
+    margin: 6px 0;
+    line-height: 1.4;
   }
 
-  input, select {
-    border: 1px solid #ccc;
-    padding: 5px;
-  }
-
-  .linha, .coluna {
+  /* Valores finais (total, à vista, parcelado) */
+  .linha {
     margin-bottom: 10px;
   }
+
+  .linha label {
+    font-weight: bold;
+    font-size: 10pt;
+  }
+
+  .linha input {
+    font-size: 10pt;
+  }
 }
+
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -285,4 +366,23 @@ body.bg {
   .icones a {
     margin: 5px;
   }
+}
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background-color: #002F6C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #001f47;
 }
