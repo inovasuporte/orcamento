@@ -1,61 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Orçamento Enviado</title>
+  <meta charset="UTF-8">
+  <title>Confirmação - Inova Suporte</title>
+  <link rel="stylesheet" href="css/style.css" />
   <style>
     body {
       background: url('img/bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
+      color: #fff;
     }
 
-    .confirmacao {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 2rem 3rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
+    .container {
+      background: rgba(0, 0, 0, 0.75);
       max-width: 600px;
+      margin: 10vh auto;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
-    .confirmacao h1 {
-      color: #1e90ff;
+    h1 {
       margin-bottom: 1rem;
     }
 
-    .confirmacao p {
-      font-size: 1.1rem;
+    p {
+      font-size: 1.2rem;
       margin-bottom: 2rem;
     }
 
-    .confirmacao a {
-      text-decoration: none;
-      background-color: #1e90ff;
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #28a745;
       color: white;
-      padding: 0.7rem 1.5rem;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background 0.3s ease;
+      cursor: pointer;
     }
 
-    .confirmacao a:hover {
-      background-color: #156ec3;
+    button:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
-  <div class="confirmacao">
-    <h1>Orçamento gerado com sucesso!</h1>
-    <p>Obrigado por utilizar o sistema da Inova Suporte.<br/>
-    Seu orçamento foi processado e está pronto para impressão ou envio.</p>
-    <a href="index.html">Criar novo orçamento</a>
+  <div class="container">
+    <h1>Orçamento Concluído</h1>
+    <p>Seu orçamento foi salvo e está pronto para ser impresso ou enviado.</p>
+    <button onclick="logout()">Criar novo orçamento</button>
   </div>
+
+  <script src="auth.js"></script>
+  <script>
+    verificarAcesso();
+
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
 </body>
 </html>

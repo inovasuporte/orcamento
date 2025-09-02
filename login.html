@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Inova Suporte</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background: url('img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 15vh auto;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    input[type="password"], button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input[type="password"] {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Área Restrita</h2>
+    <form onsubmit="login(event)">
+      <input type="password" id="senha" placeholder="Digite a senha" required />
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

@@ -9,19 +9,19 @@
 <body class="bg">
    <div class="folha">
     <header>
-      <img src="img/logo.png" alt="Logo Inova Suporte" class="logo">
+      <img src="img/logo.png" alt="Logo Inova Suporte" class="logo" style="order: -1;">
       <h1>Orçamento Técnico</h1>
-	    <div class="dados-contato">
-			<p>📞 (16) 3945-5077</p>
-			<p>✉️ suporte.inovasuporte@outlook.com.br</p>
-		</div>
+      <div class="dados-contato">
+        <p>📞 (16) 3945-5077</p>
+        <p>✉️ suporte.inovasuporte@outlook.com.br</p>
+      </div>
     </header>
 
     <section class="dados-principais">
-<div class="coluna">
-		<label for="numeroOrcamento">Nº Orçamento</label>
-		<input type="text" id="numeroOrcamento" pattern="ORC-\d{8}\d{2}" title="Formato: ORC-YYYYMMDDxx" />
-</div>
+      <div class="coluna">
+        <label for="numeroOrcamento">Nº Orçamento</label>
+        <input type="text" id="numeroOrcamento" pattern="ORC-\d{8}\d{2}" title="Formato: ORC-YYYYMMDDxx" />
+      </div>
       <div class="coluna">
         <label for="dataAtual">Data</label>
         <input type="date" id="dataAtual" readonly />
@@ -30,34 +30,33 @@
         <label for="validade">Validade</label>
         <input type="date" id="validade" readonly />
       </div>
-	  <div class="coluna">
-		<label for="elaboradoPor">Elaborado por</label>
-		<input type="text" id="elaboradoPor" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
-	  </div>
+      <div class="coluna">
+        <label for="elaboradoPor">Elaborado por</label>
+        <input type="text" id="elaboradoPor" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
+      </div>
     </section>
 
     <section class="cliente">
-	  <div class="coluna">
-		<label for="empresa">Empresa</label>
-		<input type="text" id="empresa" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
-	  </div>
-	  <div class="coluna">
-		<label for="nome">Nome</label>
-		<input type="text" id="nome" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
-	  </div>
-	  <div class="coluna">
-		<label for="telefone">Telefone</label>
-		<input type="tel" id="telefone" pattern="\d{10,11}" title="Telefone com 10 ou 11 dígitos" />
-	  </div>
-
+      <div class="coluna">
+        <label for="empresa">Empresa</label>
+        <input type="text" id="empresa" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
+      </div>
+      <div class="coluna">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" pattern="[A-Za-zÀ-ÿ\s]+" title="Somente letras e espaços" />
+      </div>
+      <div class="coluna">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" placeholder="(__) _____-____" maxlength="15" oninput="formatarTelefone(this)" />
+      </div>
       <div class="coluna">
         <label for="email">Email</label>
-        <input type="email" id="email" />
+        <input type="email" id="email" required />
       </div>
     </section>
 
     <section>
-      <h3>Itens do orçamento</h3>
+      <h3 class="nao-imprimir">Itens do orçamento</h3>
       <table id="tabelaItens">
         <thead>
           <tr>
@@ -69,7 +68,9 @@
         </thead>
         <tbody id="corpoTabelaItens">
           <tr>
-            <td><input type="number" min="1" class="qtd" onchange="calcularLinha(this)" /></td>
+            <td>
+              <input type="number" min="1" class="qtd" onchange="calcularLinha(this)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            </td>
             <td><input type="text" class="descricao" /></td>
             <td><input type="text" class="unitario" oninput="formatarMoeda(this); calcularLinha(this)" /></td>
             <td><input type="text" class="total" readonly /></td>
@@ -78,6 +79,8 @@
       </table>
       <button onclick="adicionarItem()">+ Adicionar Item</button>
     </section>
+
+    <div id="itens-formatados-impressao" style="display:none;"></div>
 
     <section>
       <div class="linha">
@@ -121,5 +124,17 @@
   </div>
 
   <script src="js/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tel = document.getElementById("telefone");
+      tel.addEventListener("input", function () {
+        let v = tel.value.replace(/\D/g, "");
+        if (v.length >= 2) v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+        if (v.length >= 10) v = v.substring(0, 10) + "-" + v.substring(10, 14);
+        tel.value = v.substring(0, 15);
+      });
+    });
+  </script>
 </body>
 </html>
